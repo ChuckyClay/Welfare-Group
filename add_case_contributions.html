@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Case Contribution</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Add Contribution</h1>
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="view_case_details.html">Back to Case</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>For:</h2>
+
+            <p style="color: red;"></p>
+
+        <form>
+            <label for="contributor_name">Contributor Name:</label><br>
+            <input type="text" name="contributor_name" id="contributor_name" required><br><br>
+
+            <label for="amount">Amount (Ksh):</label><br>
+            <input type="number" name="amount" id="amount" min="1" step="any" required><br><br>
+
+            <button type="submit">Save Contribution</button>
+        </form>
+    </main>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Send SMS to All Members</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .alert {
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 6px;
+      font-weight: bold;
+      width: fit-content;
+    }
+    .success {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+    .error {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="topbar">
+      <h1>Kiamuringa Family</h1>
+    </div>
+    <nav id="navbar">
+      <a href="dashboard.html">Home</a>
+      <a href="view_members.html">Members</a>
+      <a href="contributions.html">Contributions</a>
+      <a href="#" id="logout">Logout</a>
+    </nav>
+  </header>
+
+  <div class="box">
+  <main>
+    <section>
+      <h2>Send SMS to All Members</h2>
+
+      <form>
+        <label for="message"> Message:</label><br>
+        <textarea name="message" rows="5" cols="50" required></textarea><br><br>
+        <button class="btn1" type="submit">Send Message</button>
+      </form>
+    </section>
+  </main>
+  </div>
+  <p><a href="sms_history.html" class="btn1">Back</a></p>
+</body>
+</html>

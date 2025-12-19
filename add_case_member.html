@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Member</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <h1>Kiamuringa Welfare Group</h1>
+</header>
+<main>
+    <h2>Add Member for Case</h2>
+    <form>
+        <label>Member Name:</label><br>
+        <input type="text" name="member_name" required><br><br>
+
+        <label>Contribution (Ksh):</label><br>
+        <input type="number" name="contribution" min="0" step="0.01"><br><br>
+
+        <label>Gap (Ksh):</label><br>
+        <input type="number" name="gap" min="0" step="0.01"><br><br>
+
+        <button type="submit" class="btn">Add Member</button>
+    </form>
+    <p><a href="view_case_details.html" class="btn1">Back</a></p>
+</main>
+</body>
+</html>

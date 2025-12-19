@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - Burial Group</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="topbar">
+      <h1>Register</h1>
+    </div>
+    <nav id="mobileMenu" class="hidden">
+      <a href="index.html">Home</a>
+      <a href="login.html">Login</a>
+      <a href="register.html">Register</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="form-section">
+      <p id="registermessage"></p><br>
+      <h2>Member Registration</h2>
+      <form id="registerForm">
+        <label for="fullname">Full Name</label><br>
+        <input type="text" id="fullname" name="fullname" placeholder="Full Name" required><br>
+
+        <label for="phone">Phone Number</label><br>
+        <input type="text" id="phone" name="phone" placeholder="Phone Number" required><br>
+
+        <label for="idno">National ID</label><br>
+        <input type="text" id="idno" name="idno" placeholder="National ID Number" required><br>
+
+        <label for="email">Email Address</label><br>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required><br>
+
+        <label for="password">Create Password</label><br>
+        <input type="password" id="password" name="password" placeholder="Create a strong password" required><br>
+
+        <button type="submit">Register</button>
+
+        <p>Already have an account <a href="login.html">LogIn</a> </p>
+
+      </form>
+
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

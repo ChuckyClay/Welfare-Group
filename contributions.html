@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contributions - Burial Group</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <div class="topbar">
+    <h1>Welfare Group</h1>
+  </div>
+  <nav id="navbar">
+    <a href="dashboard.html">Home</a>
+    <a href="view_members.html">Members</a>
+    <a href="contributions.html">Contributions</a>
+    <a href="login.html">Logout</a>
+  </nav>
+</header>
+
+<main>
+  <section class="form-section">
+    <h2>Add Contribution</h2>
+    <form>
+      <select name="member_id" required>
+        <option value="">-- Select Member --</option>
+      </select>
+      <input type="number" name="amount" placeholder="Amount (KES)" step="0.01" required />
+      <button type="submit">Add Contribution</button>
+    </form>
+  </section>
+
+  <section class="list-section">
+    <h2>All Contributions</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Member Name</th>
+          <th>Total Contributions (KES)</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table><br>
+    <p><a href="dashboard.html" class="btn1">Home</a></p><br>
+    <p><a href="view_members.html" class="btn1">Members</a></p>
+  </section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

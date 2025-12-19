@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Kiamuringa Burial Group</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="topbar">
+      <h1>Kiamuringa Welfare Group</h1>
+    </div>
+    <nav id="navbar" class="hidden">
+      <a href="dashboard.html">Home</a>
+      <a href="view_members.html">Members</a>
+      <a href="send_sms.html">Send SMS</a>
+      <a href="contributions.html">Contributions</a>
+      <a href="#" id="logout">Logout</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="welcome">
+      <h2 class="typing-effect" id="greeting"></h2><br>
+      <h3 class="typing-effect" id="welcomeMessage"></h3>
+    </section>
+
+    <section class="cards">
+      <div class="card">
+        <h2>Total Members</h2><br>
+        <p id="totalMembers"> </p>
+      </div>
+      <div class="card">
+        <h2>Total Contributions</h2><br>
+        <p>KES</p>
+      </div>
+      <div class="card">
+        <h3>Messages</h3>
+        <p><i>View all sent SMS</i></p><br>
+        <a href="sms_history.html" class="btn">View History</a>
+      </div>
+      <div class="card">
+        <h3>Manage Deceased Cases</h3>
+        <p><i>Log and track contributions for any deceased member or family.</i></p><br>
+        <a href="view_cases.html" class="btn">View Cases</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

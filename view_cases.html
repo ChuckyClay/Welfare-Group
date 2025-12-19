@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Deceased Cases</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #444;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .btn {
+            background-color: #444;
+            color: white;
+            padding: 6px 10px;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Kiamuringa Burial Group</h1>
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="view_cases.html">Deceased Cases</a>
+            <a href="#" id="logout">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+      <div class="card1" style="margin: auto;">
+        <h2>Add Deceased Case</h2>
+        <a href="add_case.html" class="btn"> Add Case</a>
+      </div>
+        <h2>All Deceased Cases</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Case Name</th>
+                    <th>Members</th>
+                    <th>Total Contributions</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </main>
+</body>
+<a href="dashboard.html" class="btn1">Back</a>
+</html>

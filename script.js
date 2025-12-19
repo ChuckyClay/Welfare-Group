@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+/*document.addEventListener("DOMContentLoaded", () => {
     // Registration Form Handler
     const registerForm = document.getElementById("registerForm");
     if (registerForm) {
@@ -493,4 +493,4 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-})
+}) */

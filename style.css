@@ -1,16 +1,24 @@
+:root {
+  --primary-color: #2f05a1;
+  --secondary-color: #003366;
+  --accent-color: #3775b4;
+  --text-color: #333;
+  --bg-color: #fff;
+  --shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
 * {
   box-sizing: border-box;
-  margin:auto;
-  position: relative;
 }
 
 body {
   font-family: Arial, sans-serif;
-  margin: auto;
+  margin: 0;
+  padding: 0;
 }
 
 header {
-  background-color: #2f05a1;
+  background-color: var(--primary-color);
   color: white;
   padding: 20px;
   text-align: center;
@@ -26,7 +34,9 @@ nav a {
   margin: 0 8px;
   text-decoration: none;
   display: inline-block;
-  transform: perspective(500px), rotateY(45deg);
+  padding: 8px 12px;
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 5px;
 }
 
 main {
@@ -48,7 +58,7 @@ form button {
 }
 
 form button {
-  background-color: #003366;
+  background-color: var(--secondary-color);
   color: white;
   border: none;
   cursor: pointer;
@@ -186,7 +196,7 @@ table td {
 }
 
 .btn {
-  background-color: #003366;
+  background-color: var(--secondary-color);
   color: white;
   padding: 14px 28px;
   border-radius: 8px;
@@ -201,14 +211,14 @@ table td {
   border-radius: 8px;
   text-decoration: none;
   font-weight: bold;
-  transition: background 0.3s;
+  transition: background-color 0.3s;
 }
 
 .btn:hover {
-  background-color: #3775b4;
+  background-color: var(--accent-color);
 }
 .btn1:hover {
-  background-color: #437ab1;
+  background-color: var(--accent-color);
 }
 a {
   text-decoration: none;

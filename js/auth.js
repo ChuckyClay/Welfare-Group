@@ -109,3 +109,18 @@ function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
+
+// Menu Toggle for Mobile
+const menuToggle = document.getElementById("menuToggle");
+const nav = document.querySelector('.site-header nav');
+if (menuToggle && nav) {
+    menuToggle.addEventListener ('click', () => {
+        nav.classList.toggle('open');
+    });
+}
+
+document.body.addEventListener('click', (e) => {
+    if (!nav.contains(e.target) && e.target !== menuToggle) {
+        nav.classList.remove('open');
+    }
+});

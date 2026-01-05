@@ -300,3 +300,15 @@ nav a:hover {
   animation: typing-effectH3 3s steps(50, end) forwards;
   animation-delay: 2s, 0s;
 }
+
+@media (max-width: 800px){
+  .site-header{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .site-header nav{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

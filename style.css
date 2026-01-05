@@ -149,25 +149,35 @@ table td {
 @media screen and (max-width: 768px) {
   .menu-toggle {
     display: block;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
-  #mobileMenu {
-    display: none;
+  .site-header nav {
+    position: fixed;
+    top: 0;
+    right: -50%;
+    width: 50vw;
+    height: 100vh;
+    background-color: var(--primary-color);
     flex-direction: column;
-    align-items: center;
-    background-color: #003366;
-    margin-top: 15px;
-    padding: 10px 0;
+    padding: 10px;
+    box-shadow: -4px 0 8px rgba(0,0,0,0.2);
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    border-radius: 10px;
   }
-
-  #mobileMenu.show {
+  .site-header nav.open {
+    transform: translateX(0);
+  }
+  .site-header nav a {
+    padding: 5px;
+    width: 100%;
     display: flex;
-  }
-
-  nav a {
-    display: block;
-    margin: 10px 0;
-    font-size: 16px;
+    flex-direction: column;
   }
 }
 

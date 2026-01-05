@@ -174,10 +174,12 @@ table td {
     transform: translateX(0);
   }
   .site-header nav a {
-    padding: 5px;
+    padding: 12px;
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 }
 

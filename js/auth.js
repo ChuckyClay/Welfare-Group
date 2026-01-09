@@ -1,20 +1,18 @@
 // auth.js - Handles authentication (register, login, logout)
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Registration Form Handler
+   // Registration Form Handler
     const registerForm = document.getElementById("registerForm");
     if (registerForm) {
         registerForm.addEventListener("submit", function(e) {
             e.preventDefault();
             const fullname = document.getElementById("fullname").value.trim();
-            const phone = document.getElementById("phone").value.trim();
-            const Idno = document.getElementById("idno").value.trim();
             const email = document.getElementById("email").value.trim();
             const password = document.getElementById("password").value.trim();
             const message = document.getElementById("registermessage");
 
             // Enhanced validation
-            if (!fullname || !phone || !Idno || !email || !password) {
+            if (!fullname || !email || !password) {
                 showMessage(message, "Please fill in all fields.", "red");
                 return;
             }
@@ -27,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            const member = { fullname, phone, Idno, email, password, role: localStorage.getItem("registeredMember") ? "member" : "admin" };
+            const member = { fullname, email, password, role: localStorage.getItem("registeredMember") ? "member" : "admin" };
             localStorage.setItem("registeredMember", JSON.stringify(member));
 
             showMessage(message, `Registration successful for ${fullname}!`, "green");
@@ -40,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Login Form Handler
+   // Login Form Handler
     const loginForm = document.getElementById("loginForm");
     if (loginForm) {
         loginForm.addEventListener("submit", function(e) {
@@ -60,21 +58,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 loginForm.reset();
                 localStorage.setItem("currentMember", JSON.stringify(storedMember));
                 setTimeout(() => {
-                    window.location.href = "dashboard.html";
+                    window.location.href = "admin.html";
                 }, 2000);
             } else {
                 showMessage(message, "Invalid email or password!", "red");
             }
-        });
-    }
-
-    // Logout Functionality
-    const logoutLink = document.getElementById("logout");
-    if (logoutLink) {
-        logoutLink.addEventListener("click", function(e) {
-            e.preventDefault();
-            localStorage.removeItem("currentMember");
-            window.location.href = "index.html";
         });
     }
 
@@ -89,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
         greeting.classList.add("typing-effect");
     }
     if (welcomeMessage) {
-        welcomeMessage.textContent = "Welcome to Kiamuringa Welfare Group";
+        welcomeMessage.textContent = "Welcome back to K.W.G!";
         welcomeMessage.classList.add("typing-effect");
         welcomeMessage.style.fontSize = "25px";
         welcomeMessage.style.fontStyle = "italic";

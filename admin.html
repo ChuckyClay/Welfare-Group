@@ -11,6 +11,14 @@
         <div class="topbar">
         <h1>K.W.G Admin Panel</h1>
         </div>
+        <button id="menuToggle" class="menu-toggle">☰</button>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="add_case_contributions.html">Case Contribution</a>
+            <a href="add_case_member.html">Case Member</a>
+            <a href="add_members.html">Add Members</a>
+            <a href="add_contribution.html">Contribution</a>
+        </nav>
     </header>
   <main>
     <section class="welcome">
@@ -18,27 +26,6 @@
       <h3 class="typing-effect" id="welcomeMessage"></h3>
     </section>
     <section class="cards">
-        <div class="card">    
-            <h2>Add Contribution</h2>
-            <form>
-            <select name="member_id" required>
-                <option value="">-- Select Member --</option>
-            </select>
-            <input type="number" name="amount" placeholder="Amount (KES)" step="0.01" required />
-            <button type="submit">Add Contribution</button>
-            </form>
-        </div>
-        
-        <div class="card">
-            <h2>Add Group Member</h2>
-            <form>
-                <input type="text" name="fullname" placeholder="Full Name" required />
-                <input type="text" name="phone" placeholder="Phone Number" required />
-                <input type="text" name="idno" placeholder="National ID" required />
-                <button type="submit">Add Member</button>
-            </form>
-        </div>
-        
         <div class="card">
             <h2>Create a New Deceased Case</h2>
 

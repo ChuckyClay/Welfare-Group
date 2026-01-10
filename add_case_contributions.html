@@ -5,29 +5,36 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
+    <header class="site-header">
+        <div class="topbar">
         <h1>Add Contribution</h1>
+        </div>
+        <button id="menuToggle" class="menu-toggle">☰</button>
         <nav>
-            <a href="index.html">Dashboard</a>
-            <a href="view_case_details.html">Back to Case</a>
+            <a href="admin.html">Dashboard</a>
+            <a href="add_case_contributions.html">Case Contribution</a>
+            <a href="add_case_member.html">Case Member</a>
+            <a href="add_members.html">Add Members</a>
+            <a href="add_contribution.html">Contribution</a>
         </nav>
     </header>
 
     <main>
-        <h2>For:</h2>
+        <h2>Contribution For:</h2>
 
             <p style="color: red;"></p>
 
         <form>
             <label for="contributor_name">Contributor Name:</label><br>
-            <input type="text" name="contributor_name" id="contributor_name" required><br><br>
+            <input type="text" name="contributor_name" id="contributor_name" required>
 
             <label for="amount">Amount (Ksh):</label><br>
-            <input type="number" name="amount" id="amount" min="1" step="any" required><br><br>
+            <input type="number" name="amount" id="amount" min="1" step="any" required>
 
             <button type="submit">Save Contribution</button>
         </form>
     </main>
 </body>
+<script src="js/auth.js"></script>
 <script src="js/cases.js"></script>
 </html>

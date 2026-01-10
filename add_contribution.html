@@ -21,11 +21,17 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>Kiamuringa Welfare Group</h1>
+    <header class="site-header">
+        <div class="topbar">
+        <h1>Add Overall Contribution</h1>
+        </div>
+        <button id="menuToggle" class="menu-toggle">☰</button>
         <nav>
-            <a href="index.html">Dashboard</a>
-            <a href="view_cases.html">Deceased Cases</a>
+            <a href="admin.html">Dashboard</a>
+            <a href="add_case_contributions.html">Case Contribution</a>
+            <a href="add_case_member.html">Case Member</a>
+            <a href="add_members.html">Add Members</a>
+            <a href="add_contribution.html">Contribution</a>
         </nav>
     </header>
 
@@ -39,12 +45,12 @@
             <input type="text" id="contributor_name" name="contributor_name" required>
 
             <label for="amount">Amount (Ksh)</label>
-            <input type="number" id="amount" name="amount" min="1" step="0.01" required>
+            <input type="number" id="amount" name="amount" min="0" step="5" required>
 
             <input type="submit" class="btn" value="Add Contribution">
         </form>
-        <p><a href="view_case_details.html" class="btn1">Back</a></p>
     </main>
 </body>
+<script src="js/auth.js"></script>
 <script src="js/cases.js"></script>
 </html>

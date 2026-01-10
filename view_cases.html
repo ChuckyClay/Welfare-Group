@@ -32,19 +32,22 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>Kiamuringa Burial Group</h1>
-        <nav>
-            <a href="index.html">Dashboard</a>
-            <a href="view_cases.html">Deceased Cases</a>
-        </nav>
-    </header>
+  <header class="site-header">
+    <div class="topbar">
+      <h1>Kiamuringa Welfare Group</h1>
+    </div>
+    <button id="menuToggle" class="menu-toggle">☰</button>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="view_members.html">Members</a>
+      <a href="contributions.html">Contributions</a>
+      <a href="sms_history.html">SMS History</a>
+      <a href="view_cases.html">View Cases</a>
+      <a href="login.html" target="_blank">Admin Panel</a>
+    </nav>
+  </header>
 
     <main>
-      <div class="card1" style="margin: auto;">
-        <h2>Add Deceased Case</h2>
-        <a href="add_case.html" class="btn"> Add Case</a>
-      </div>
         <h2>All Deceased Cases</h2>
 
         <table>
@@ -62,6 +65,7 @@
         </table>
     </main>
 </body>
+<script src="js/auth.js"></script>
 <script src="js/cases.js"></script>
-<a href="dashboard.html" class="btn1">Back</a>
+<a href="index.html" class="btn1">Back</a>
 </html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add New Admin</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header" style="background:#222a44;">
+    <div class="topbar">
+      <h1 style="color:#ffeb3b;">Add New Admin</h1>
+    </div>
+    <button id="menuToggle" class="menu-toggle">☰</button>
+    <nav style="background:#1a2036;">
+      <a href="admin.html">Dashboard</a>
+      <a href="admin_cases.html">Cases</a>
+      <a href="admin_members.html">Members</a>
+      <a href="admin_sms.html">Group Messages</a>
+      <a href="#" id="logoutBtn">Logout</a>
+    </nav>
+  </header>
+  <main>
+    <section class="form-section">
+      <h2>Register a New Admin</h2>
+      <form id="adminRegisterForm">
+        <label for="fullname">Full Name</label><br>
+        <input type="text" id="fullname" name="fullname" placeholder="Full Name" required>
+        <label for="email">Admin Email Address</label><br>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        <label for="password">Create Password</label><br>
+        <input type="password" id="password" name="password" placeholder="Create a strong password" required><br>
+        <button type="submit">Register Admin</button>
+        <p id="registermessage"></p>
+      </form>
+    </section>
+  </main>
+  <script src="js/auth.js"></script>
+  <script>
+    // Admin-only access check
+    const currentUser = JSON.parse(localStorage.getItem("currentMember"));
+    if (!currentUser || currentUser.role !== "admin") {
+      alert("Access denied. Admins only.");
+      window.location.href = "login.html";
+    }
+    document.getElementById("logoutBtn").onclick = function() {
+      localStorage.removeItem("currentMember");
+      window.location.href = "login.html";
+    };
+    // Use the same registration logic as register.html but always set role to 'admin'
+    document.getElementById('adminRegisterForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const fullname = document.getElementById('fullname').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const message = document.getElementById('registermessage');
+      if (!fullname || !email || !password) {
+        message.textContent = 'Please fill in all fields.';
+        message.style.color = 'red';
+        return;
+      }
+      if (!/^\S+@\S+\.\S+$/.test(email)) {
+        message.textContent = 'Please enter a valid email.';
+        message.style.color = 'red';
+        return;
+      }
+      if (password.length < 6) {
+        message.textContent = 'Password must be at least 6 characters.';
+        message.style.color = 'red';
+        return;
+      }
+      // Store as admin
+      const admins = JSON.parse(localStorage.getItem('admins')) || [];
+      admins.push({ fullname, email, password, role: 'admin' });
+      localStorage.setItem('admins', JSON.stringify(admins));
+      message.textContent = `Admin registration successful for ${fullname}!`;
+      message.style.color = 'green';
+      document.getElementById('adminRegisterForm').reset();
+    });
+  </script>
+</body>
+</html>

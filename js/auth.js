@@ -25,13 +25,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            const member = { fullname, email, password, role: localStorage.getItem("registeredMember") ? "member" : "admin" };
-            localStorage.setItem("registeredMember", JSON.stringify(member));
-
-            showMessage(message, `Registration successful for ${fullname}!`, "green");
-
+            // Store as admin if no admins exist, else as member (for legacy, but only admins should register)
+            let admins = JSON.parse(localStorage.getItem("admins")) || [];
+            // If no admins exist, this is the first admin
+            if (admins.length === 0) {
+                admins.push({ fullname, email, password, role: "admin" });
+                localStorage.setItem("admins", JSON.stringify(admins));
+                showMessage(message, `Admin registration successful for ${fullname}!`, "green");
+            } else {
+                // Only allow admin registration from admin_add_admin.html
+                showMessage(message, `Registration is only allowed for admins.`, "red");
+                return;
+            }
             registerForm.reset();
-
             setTimeout(() => {
                 window.location.href = "login.html";
             }, 2000);
@@ -47,22 +53,19 @@ document.addEventListener("DOMContentLoaded", () => {
             const password = document.getElementById("password").value.trim();
             const message = document.getElementById("loginmessage");
 
-            const storedMember = JSON.parse(localStorage.getItem("registeredMember"));
-            if (!storedMember) {
-                showMessage(message, "No user found. Please register first.", "red");
+            // Check against all admins
+            let admins = JSON.parse(localStorage.getItem("admins")) || [];
+            const foundAdmin = admins.find(a => a.email === email && a.password === password);
+            if (!foundAdmin) {
+                showMessage(message, "Invalid email or password, or no admin found. Please contact the system owner.", "red");
                 return;
             }
-
-            if (email === storedMember.email && password === storedMember.password) {
-                showMessage(message, `Login successful! Welcome ${storedMember.fullname}!`, "green");
-                loginForm.reset();
-                localStorage.setItem("currentMember", JSON.stringify(storedMember));
-                setTimeout(() => {
-                    window.location.href = "admin.html";
-                }, 2000);
-            } else {
-                showMessage(message, "Invalid email or password!", "red");
-            }
+            showMessage(message, `Login successful! Welcome ${foundAdmin.fullname}!`, "green");
+            loginForm.reset();
+            localStorage.setItem("currentMember", JSON.stringify(foundAdmin));
+            setTimeout(() => {
+                window.location.href = "admin.html";
+            }, 2000);
         });
     }
 

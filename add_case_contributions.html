@@ -29,10 +29,14 @@
         <form>
             <label for="contributor_name">Contributor Name:</label><br>
             <input type="text" name="contributor_name" id="contributor_name" required>
-
+            <label for="group">Group:</label><br>
+            <select name="group" id="group" required>
+                <option value="singles">Singles</option>
+                <option value="couples">Couples</option>
+                <option value="others">Others</option>
+            </select>
             <label for="amount">Amount (Ksh):</label><br>
             <input type="number" name="amount" id="amount" min="1" step="any" required>
-
             <button type="submit">Save Contribution</button>
         </form>
     </main>

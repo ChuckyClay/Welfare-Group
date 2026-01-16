@@ -25,13 +25,14 @@
     <form>
         <label>Member Name:</label><br>
         <input type="text" name="member_name" required>
-
-        <label>Contribution (Ksh):</label><br>
-        <input type="number" name="contribution" min="0" step="5">
-
+        <label>Group:</label><br>
+        <select name="group" required>
+            <option value="singles">Singles</option>
+            <option value="couples">Couples</option>
+            <option value="others">Others</option>
+        </select>
         <label>Gap (Ksh):</label><br>
         <input type="number" name="gap" min="0" step="5">
-
         <button type="submit" class="btn">Add Member</button>
     </form>
 </main>

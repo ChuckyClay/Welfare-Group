@@ -3,66 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deceased Cases</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
-        th {
-            background-color: #444;
-            color: white;
-        }
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-        .btn {
-            background-color: #444;
-            color: white;
-            padding: 6px 10px;
-            border: none;
-            border-radius: 4px;
-            text-decoration: none;
-        }
-    </style>
+  <title>Deceased Cases</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="topbar">
-      <h1>Kiamuringa Welfare Group</h1>
-    </div>
-    <button id="menuToggle" class="menu-toggle">☰</button>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="view_members.html">Members</a>
-      <a href="contributions.html">Contributions</a>
-      <a href="sms_history.html">SMS History</a>
-      <a href="view_cases.html">View Cases</a>
-      <a href="login.html" target="_blank">Admin Panel</a>
-    </nav>
-  </header>
+    <header class="site-header">
+        <div class="topbar">
+            <h1>Kiamuringa Welfare Group</h1>
+        </div>
+        <button id="menuToggle" class="menu-toggle">☰</button>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="view_members.html">Members</a>
+            <a href="contributions.html">Contributions</a>
+            <a href="sms_history.html">Group Messages</a>
+            <a href="view_cases.html">Deceased Cases</a>
+            <a href="login.html" target="_blank">Admin Login</a>
+        </nav>
+    </header>
 
     <main>
-        <h2>All Deceased Cases</h2>
-
+        <p style="font-size:0.95em;color:#555;">Click on a case to view details and see paid members. Only admins can manage cases and mark payments.</p>
         <table>
             <thead>
                 <tr>
                     <th>#</th>
                     <th>Case Name</th>
-                    <th>Members</th>
-                    <th>Total Contributions</th>
-                    <th>Actions</th>
+                    <th>Contributions</th>
+                    <th>Total Amount</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
+                <!-- Populated by JS -->
+            </tbody>
+        </table>
+    </main>
             </tbody>
         </table>
     </main>

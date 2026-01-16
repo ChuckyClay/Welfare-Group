@@ -7,48 +7,75 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="site-header">
-        <div class="topbar">
-        <h1>K.W.G Admin Panel</h1>
-        </div>
-        <button id="menuToggle" class="menu-toggle">☰</button>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="add_case_contributions.html">Case Contribution</a>
-            <a href="add_case_member.html">Case Member</a>
-            <a href="add_members.html">Add Members</a>
-            <a href="add_contribution.html">Contribution</a>
-        </nav>
-    </header>
+  <header class="site-header" style="background:#222a44;">
+    <div class="topbar">
+      <h1 style="color:#ffeb3b;">ADMIN DASHBOARD</h1>
+    </div>
+    <button id="menuToggle" class="menu-toggle">☰</button>
+    <nav style="background:#1a2036;">
+      <a href="admin.html">Dashboard</a>
+      <a href="admin_cases.html">Cases</a>
+      <a href="admin_members.html">Members</a>
+      <a href="admin_sms.html">Group Messages</a>
+      <a href="#" id="logoutBtn">Logout</a>
+    </nav>
+  </header>
   <main>
-    <section class="welcome">
-      <h2 class="typing-effect" id="greeting"></h2><br>
-      <h3 class="typing-effect" id="welcomeMessage"></h3>
+    <section style="margin-bottom:32px;">
+      <h2 style="color:#222a44;">Welcome, Admin!</h2>
+      <p style="font-size:1.1em;">This is your private management area. Use the links above to manage cases, members, and group messages. All actions here are admin-only.</p>
     </section>
     <section class="cards">
-        <div class="card">
-            <h2>Create a New Deceased Case</h2>
-
-            <form>
-                <label>Case Name (e.g. Wanjiku Family):</label>
-                <input type="text" name="case_name" required><br>
-                <button type="submit">Create Case</button>
-            </form>
-        </div>
-
-        </div>
-
-        <div class="card">
-            <h2>Send SMS to All Members</h2>
-
-      <form>
-        <label for="message"> Message:</label><br>
-        <textarea name="message" rows="5" cols="35" required></textarea><br><br>
-        <button class="btn1" type="submit">Send Message</button>
-      </form>
-        </div>
+      <div class="card">
+        <h2>Total Members</h2>
+        <p id="adminTotalMembers">-</p>
+        <a href="admin_members.html" class="btn">Manage Members</a>
+      </div>
+      <div class="card">
+        <h2>Total Cases</h2>
+        <p id="adminTotalCases">-</p>
+        <a href="admin_cases.html" class="btn">Manage Cases</a>
+      </div>
+      <div class="card">
+        <h2>Total Contributions</h2>
+        <p id="adminTotalContributions">-</p>
+        <a href="admin_cases.html" class="btn">View Contributions</a>
+      </div>
+      <div class="card">
+        <h2>Group Messages</h2>
+        <a href="admin_sms.html" class="btn">Send/View Messages</a>
+      </div>
     </section>
   </main>
+  <script src="js/auth.js"></script>
+  <script>
+  // Admin-only access check
+  const currentUser = JSON.parse(localStorage.getItem("currentMember"));
+  if (!currentUser || currentUser.role !== "admin") {
+    alert("Access denied. Admins only.");
+    window.location.href = "login.html";
+  }
+  // Dashboard stats
+  document.addEventListener("DOMContentLoaded", () => {
+    const members = JSON.parse(localStorage.getItem("members")) || [];
+    const cases = JSON.parse(localStorage.getItem("cases")) || [];
+    let totalContributions = 0;
+    cases.forEach(c => {
+      c.contributions && c.contributions.forEach(contrib => {
+        if (contrib.paid) totalContributions += (contrib.contribution || 0) + (contrib.gap || 0);
+      });
+    });
+    document.getElementById("adminTotalMembers").textContent = members.length;
+    document.getElementById("adminTotalCases").textContent = cases.length;
+    document.getElementById("adminTotalContributions").textContent = totalContributions + " Ksh";
+  });
+  // Logout
+  document.getElementById("logoutBtn").onclick = function() {
+    localStorage.removeItem("currentMember");
+    window.location.href = "login.html";
+  };
+  // Create case form handler (delegated to cases.js for logic)
+  // SMS form handler (delegated to sms.js for logic)
+  </script>
 </body>
-<script src="js/auth.js"></script>
 </html>

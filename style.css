@@ -144,18 +144,30 @@ form button {
 }
 
 /* Tables */
+/* Table Styles */
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-  background-color: #ddd;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  border-radius: 8px;
+  overflow: hidden;
 }
-
 table th,
 table td {
   padding: 12px;
-  border: 1px solid #000008;
+  border: 1px solid #e0e0e0;
   text-align: left;
+  font-size: 1em;
+}
+table th {
+  background: var(--primary-color);
+  color: #fff;
+  font-weight: 600;
+}
+table tr:nth-child(even) td {
+  background: #f2f6fa;
 }
 
 /* Responsive */
@@ -164,11 +176,13 @@ table td {
     flex-direction: column;
     align-items: center;
   }
-
   table th,
   table td {
     font-size: 14px;
     padding: 8px;
+  }
+  table {
+    font-size: 0.95em;
   }
 }
 

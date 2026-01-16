@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Manage Cases</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header" style="background:#222a44;">
+    <div class="topbar">
+      <h1 style="color:#ffeb3b;">MANAGE DECEASED CASES</h1>
+    </div>
+    <button id="menuToggle" class="menu-toggle">☰</button>
+    <nav style="background:#1a2036;">
+      <a href="admin.html">Dashboard</a>
+      <a href="admin_cases.html">Cases</a>
+      <a href="admin_members.html">Members</a>
+      <a href="admin_sms.html">Group Messages</a>
+    </nav>
+  </header>
+  <main>
+    <h2>All Deceased Cases</h2>
+    <p style="font-size:0.95em;color:#555;">Manage all cases here. Only admins can mark payments and manage gaps.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Case Name</th>
+          <th>Contributions</th>
+          <th>Total Amount</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Populated by JS -->
+      </tbody>
+    </table><br>
+    <a href="admin_add_case.html" class="btn">+ Create New Case</a>
+  </main>
+  <script src="js/auth.js"></script>
+  <script>
+    // Admin-only access check
+    const currentUser = JSON.parse(localStorage.getItem("currentMember"));
+    if (!currentUser || currentUser.role !== "admin") {
+      alert("Access denied. Admins only.");
+      window.location.href = "login.html";
+    }
+    document.getElementById("logoutBtn").onclick = function() {
+      localStorage.removeItem("currentMember");
+      window.location.href = "login.html";
+    };
+  </script>
+</body>
+</html>

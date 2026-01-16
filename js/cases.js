@@ -4,31 +4,40 @@ document.addEventListener("DOMContentLoaded", () => {
     const currentUser = JSON.parse(localStorage.getItem("currentMember"));
     const isAdmin = currentUser && currentUser.role === "admin";
     let cases = JSON.parse(localStorage.getItem("cases")) || [];
+    let members = JSON.parse(localStorage.getItem("members")) || [];
 
     // Add Case
-    if (window.location.pathname.includes("add_case.html")) {
-        const form = document.querySelector("form");
-        if (form && isAdmin) {
-            form.addEventListener("submit", function(e) {
-                e.preventDefault();
-                const caseName = document.querySelector("input[name='case_name']").value.trim();
-                if (!caseName) {
-                    alert("Please enter a case name.");
-                    return;
-                }
-                const newCase = {
-                    id: Date.now(),
-                    name: caseName,
-                    members: [],
-                    contributions: []
-                };
-                cases.push(newCase);
-                localStorage.setItem("cases", JSON.stringify(cases));
-                localStorage.setItem("currentCase", JSON.stringify(newCase));
-                window.location.href = "view_case_details.html";
-            });
+        if (window.location.pathname.includes("add_case.html")) {
+            const form = document.querySelector("form");
+            if (form && isAdmin) {
+                form.addEventListener("submit", function(e) {
+                    e.preventDefault();
+                    const caseName = document.querySelector("input[name='case_name'").value.trim();
+                    if (!caseName) {
+                        alert("Please enter a case name.");
+                        return;
+                    }
+                    // Assign group and default contribution for each member
+                    const singles = members.filter(m => m.group === 'singles').sort((a, b) => a.fullname.localeCompare(b.fullname));
+                    const couples = members.filter(m => m.group === 'couples').sort((a, b) => a.fullname.localeCompare(b.fullname));
+                    const others = members.filter(m => m.group === 'others').sort((a, b) => a.fullname.localeCompare(b.fullname));
+                    // Prepare contributions array for all members
+                    let contributions = [];
+                    singles.forEach(m => contributions.push({ memberId: m.id, name: m.fullname, group: 'singles', contribution: 100, gap: 0, paid: false, date: '' }));
+                    couples.forEach(m => contributions.push({ memberId: m.id, name: m.fullname, group: 'couples', contribution: 200, gap: 0, paid: false, date: '' }));
+                    others.forEach(m => contributions.push({ memberId: m.id, name: m.fullname, group: 'others', contribution: 100, gap: 0, paid: false, date: '' }));
+                    const newCase = {
+                        id: Date.now(),
+                        name: caseName,
+                        contributions
+                    };
+                    cases.push(newCase);
+                    localStorage.setItem("cases", JSON.stringify(cases));
+                    localStorage.setItem("currentCase", JSON.stringify(newCase));
+                    window.location.href = "view_case_details.html";
+                });
+            }
         }
-    }
 
     // View Cases
     if (window.location.pathname.includes("view_cases.html")) {
@@ -49,26 +58,59 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // View Case Details
-    if (window.location.pathname.includes("view_case_details.html")) {
-        const currentCase = JSON.parse(localStorage.getItem("currentCase"));
-        if (currentCase) {
-            document.querySelector("h2 b").textContent = `Contributions for: ${currentCase.name}`;
-            const tbody = document.querySelector("tbody");
-            if (tbody) {
-                tbody.innerHTML = "";
-                currentCase.contributions.forEach((contrib, index) => {
-                    const row = `<tr>
-                        <td>${index + 1}</td>
-                        <td>${contrib.name}</td>
-                        <td>${contrib.contribution}</td>
-                        <td>${contrib.gap || 0}</td>
-                        <td>${contrib.date}</td>
-                    </tr>`;
-                    tbody.innerHTML += row;
-                });
+        if (window.location.pathname.includes("view_case_details.html")) {
+            const currentCase = JSON.parse(localStorage.getItem("currentCase"));
+            if (currentCase) {
+                document.querySelector("h2 b").textContent = `Contributions for: ${currentCase.name}`;
+                const tbody = document.querySelector("tbody");
+                if (tbody) {
+                    tbody.innerHTML = "";
+                    // Group by singles, couples, others
+                    const groups = ['singles', 'couples', 'others'];
+                    let grandTotal = 0;
+                    groups.forEach(group => {
+                        const groupContribs = currentCase.contributions.filter(c => c.group === group);
+                        if (groupContribs.length > 0) {
+                            tbody.innerHTML += `<tr><th colspan='5' style='background:#eee;text-align:left;'>${group.charAt(0).toUpperCase() + group.slice(1)}</th></tr>`;
+                            let groupTotal = 0;
+                            groupContribs.forEach((contrib, idx) => {
+                                // Only show paid members for non-admins
+                                if (!isAdmin && !contrib.paid) return;
+                                tbody.innerHTML += `<tr>
+                                    <td>${idx + 1}</td>
+                                    <td>${contrib.name}</td>
+                                    <td>${contrib.contribution}</td>
+                                    <td>${contrib.gap || 0}</td>
+                                    <td>${contrib.paid ? contrib.date : (isAdmin ? `<button onclick='markPaid(${contrib.memberId})'>Mark Paid</button>` : 'Unpaid')}</td>
+                                </tr>`;
+                                if (contrib.paid) groupTotal += contrib.contribution + (contrib.gap || 0);
+                            });
+                            tbody.innerHTML += `<tr><td colspan='2'><b>${group} Total</b></td><td colspan='3'><b>${groupTotal}</b></td></tr>`;
+                            grandTotal += groupTotal;
+                        }
+                    });
+                    tbody.innerHTML += `<tr><td colspan='2'><b>Grand Total</b></td><td colspan='3'><b>${grandTotal}</b></td></tr>`;
+                }
             }
         }
+// Mark member as paid (admin only)
+window.markPaid = function(memberId) {
+    let currentCase = JSON.parse(localStorage.getItem("currentCase"));
+    let cases = JSON.parse(localStorage.getItem("cases")) || [];
+    const idx = currentCase.contributions.findIndex(c => c.memberId === memberId);
+    if (idx !== -1) {
+        currentCase.contributions[idx].paid = true;
+        currentCase.contributions[idx].date = new Date().toLocaleDateString();
+        // Update in cases array
+        const caseIdx = cases.findIndex(c => c.id === currentCase.id);
+        if (caseIdx !== -1) {
+            cases[caseIdx] = currentCase;
+            localStorage.setItem("cases", JSON.stringify(cases));
+            localStorage.setItem("currentCase", JSON.stringify(currentCase));
+            location.reload();
+        }
     }
+}
 
     // Add Member to Case
     if (window.location.pathname.includes("add_case_member.html")) {

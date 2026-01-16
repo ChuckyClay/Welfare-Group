@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Group Messages</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header" style="background:#222a44;">
+    <div class="topbar">
+      <h1 style="color:#ffeb3b;">MANAGE GROUP MESSAGES</h1>
+    </div>
+    <button id="menuToggle" class="menu-toggle">☰</button>
+    <nav style="background:#1a2036;">
+      <a href="admin.html">Dashboard</a>
+      <a href="admin_cases.html">Cases</a>
+      <a href="admin_members.html">Members</a>
+      <a href="admin_sms.html">Group Messages</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Send SMS to All Members</h2>
+    <form id="adminSmsForm">
+      <label for="message">Message:</label><br>
+      <textarea name="message" rows="5" cols="35" required></textarea><br><br>
+      <button class="btn1" type="submit">Send Message</button>
+    </form>
+    <h2>Message History</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Message</th>
+          <th>Date Sent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Populated by JS -->
+      </tbody>
+    </table>
+  </main>
+  <script src="js/auth.js"></script>
+  <script>
+    // Admin-only access check
+    const currentUser = JSON.parse(localStorage.getItem("currentMember"));
+    if (!currentUser || currentUser.role !== "admin") {
+      alert("Access denied. Admins only.");
+      window.location.href = "login.html";
+    }
+    document.getElementById("logoutBtn").onclick = function() {
+      localStorage.removeItem("currentMember");
+      window.location.href = "login.html";
+    };
+  </script>
+</body>
+</html>

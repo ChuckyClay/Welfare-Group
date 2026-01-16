@@ -12,8 +12,7 @@ A welfare group website to help manage the activities of the group and send mess
 
 ## Structure
 - `index.html`: Homepage
-- `login.html` / `register.html`: Authentication
-- `dashboard.html`: Main dashboard
+- `login.html` / `register.html`: Authentication for admin
 - `js/`: Modular JavaScript files
   - `auth.js`: Authentication logic
   - `members.js`: Member management
